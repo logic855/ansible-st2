@@ -36,13 +36,11 @@
 
 - shell: sudo st2ctl status
   register: result
-
 - debug:
     msg: "{{ result }}"
 
 - shell: sudo service st2api start
   register: result
-
 - debug:
     msg: "{{ result }}"
 
@@ -55,21 +53,23 @@
   with_items: "{{ st2_services }}"
   failed_when: False
 
-- shell: sudo service st2api start
+- shell: sudo service st2stream start
   register: result
-
 - debug:
     msg: "{{ result }}"
 
-- shell: sudo service st2api status
+- shell: sudo service st2stream status
   register: result
-
 - debug:
     msg: "{{ result }}"
 
-- shell: cat /var/log/st2/st2api*
+- shell: sudo st2ctl status
   register: result
+- debug:
+    msg: "{{ result }}"
 
+- shell: cat /var/log/st2/st2stream*
+  register: result
 - debug:
     msg: "{{ result }}"
 
