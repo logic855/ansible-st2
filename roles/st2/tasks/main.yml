@@ -32,6 +32,12 @@
   include: config_auth.yml
   when: st2_auth_enable
 
+- shell: sudo service st2api status
+  register: result
+
+- debug:
+    msg: "{{ result }}"
+
 - name: Ensure StackStorm services are enabled and running
   become: yes
   service:
@@ -41,6 +47,12 @@
   with_items: "{{ st2_services }}"
   failed_when: False
 
+- shell: sudo service st2api start
+  register: result
+
+- debug:
+    msg: "{{ result }}"
+
 - shell: sudo service st2api status
   register: result
 
@@ -48,10 +60,10 @@
     msg: "{{ result }}"
 
 - shell: cat /var/log/st2/st2api*
-  register: result1
+  register: result
 
 - debug:
-    msg: "{{ result1 }}"
+    msg: "{{ result }}"
 
 - fail:
     msg: "[DEBUG!] Stop here"
