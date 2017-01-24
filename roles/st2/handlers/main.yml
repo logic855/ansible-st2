@@ -5,6 +5,7 @@
     state: restarted
     sleep: 1
   with_items: "{{ st2_services }}"
+  failed_when: False
 
 - name: reload st2
   become: yes

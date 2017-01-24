@@ -36,7 +36,6 @@
 
 - name: Restart and reload st2
   meta: flush_handlers
-  failed_when: False
 
 - name: Ensure StackStorm services are enabled and running
   become: yes
@@ -52,7 +51,7 @@
 - debug:
     msg: "{{ result }}"
 
-- shell: cat /var/log/st2/st2stream*
+- shell: cat /var/log/st2/st2api*
   register: result
 - debug:
     msg: "{{ result }}"
