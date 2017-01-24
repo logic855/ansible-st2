@@ -1,9 +1,15 @@
+#- name: restart st2
+#  become: yes
+#  service:
+#    name: "{{ item }}"
+#    state: restarted
+#    sleep: 1
+#  with_items: "{{ st2_services }}"
+#  failed_when: False
+
 - name: restart st2
   become: yes
-  service:
-    name: "{{ item }}"
-    state: restarted
-    sleep: 1
+  command: "st2ctl restart-component {{ item }}"
   with_items: "{{ st2_services }}"
   failed_when: False
 
