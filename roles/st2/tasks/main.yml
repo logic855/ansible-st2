@@ -41,11 +41,17 @@
   with_items: "{{ st2_services }}"
   failed_when: False
 
-- shell: cat /var/log/st2/st2api*
+- shell: sudo service st2api status
   register: result
 
 - debug:
     msg: "{{ result }}"
+
+- shell: cat /var/log/st2/st2api*
+  register: result1
+
+- debug:
+    msg: "{{ result1 }}"
 
 - fail:
     msg: "[DEBUG!] Stop here"
