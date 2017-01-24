@@ -4,9 +4,7 @@
     name: "{{ item }}"
     state: restarted
     sleep: 1
-  with_items:
-    - st2ctl reload --register-all
-    - st2ctl restart
+  with_items: "{{ st2_services }}"
 
 - name: reload st2
   become: yes
