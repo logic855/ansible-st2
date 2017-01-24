@@ -40,7 +40,7 @@
 - debug:
     msg: "{{ result }}"
 
-- shell: sudo service st2api status
+- shell: sudo service st2api start
   register: result
 
 - debug:
