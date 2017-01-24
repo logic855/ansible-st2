@@ -34,6 +34,9 @@
   include: config_auth.yml
   when: st2_auth_enable
 
+- name: Restart and reload st2
+  meta: flush_handlers
+
 - shell: sudo st2ctl status
   register: result
 - debug:
