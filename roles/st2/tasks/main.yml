@@ -34,6 +34,12 @@
   include: config_auth.yml
   when: st2_auth_enable
 
+- shell: sudo st2ctl status
+  register: result
+
+- debug:
+    msg: "{{ result }}"
+
 - shell: sudo service st2api status
   register: result
 
