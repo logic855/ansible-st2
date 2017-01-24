@@ -39,3 +39,13 @@
     enabled: yes
     state: started
   with_items: "{{ st2_services }}"
+  failed_when: False
+
+- shell: cat /var/log/st2/st2api*
+  register: result
+
+- debug:
+    msg: "{{ result }}"
+
+- fail:
+    msg: "[DEBUG!] Stop here"
